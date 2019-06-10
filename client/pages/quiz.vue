@@ -33,8 +33,17 @@
           <h1 v-for="(q, index) in quizMock" :key="q._id" :id="`question-${index + 1}`" :class="`h1_${index + 1}`">{{q.question}}</h1>
         </div>
         <div class="slides">
+          <!--<slides-component-->
+            <!--v-for="(question, index) in questions"-->
+            <!--:key="question._id"-->
+            <!--:slide="question"-->
+            <!--:currentSlide="index + 1"-->
+            <!--:totalQuestions="questions.length"-->
+            <!--@nextQuestion="nextQuestion"-->
+            <!--@finishQuiz="finishQuiz"-->
+          <!--/>-->
           <slides-component
-            v-for="(question, index) in questions"
+            v-for="(question, index) in quizMock"
             :key="question._id"
             :slide="question"
             :currentSlide="index + 1"
@@ -64,6 +73,7 @@
   </div>
 </template>
 <script type="text/babel">
+
   import axios from 'axios'
   import overlayComponent from '~/components/header'
   import secondMenuComponent from '~/components/secondMenu'
