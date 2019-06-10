@@ -1,0 +1,41 @@
+{
+  "name": "quizzer",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "albahaxhimali <albahaxhimali1@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "config": {
+    "nuxt": {
+      "port": "8000"
+    }
+  },
+  "dependencies": {
+    "@nuxtjs/bootstrap-vue": "^2.0.4",
+    "@nuxtjs/router": "^1.1.0",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "magicsuggest": "^2.1.4",
+    "node-sass": "^4.9.3",
+    "nuxt": "^1.0.0",
+    "sass-loader": "^7.1.0",
+    "vue-toastr-2": "0.0.9",
+    "vuelidate": "^0.7.4",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0"
+  }
+}
