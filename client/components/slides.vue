@@ -27,6 +27,7 @@
         </ul>
         <div class="clearfix"></div>
         <!--<div class="submit" v-if="currentSlide === totalQuestions">-->
+
         <div class="submit">
           <button class="finish btn-quiz" @click="finishQuiz">
             <svg width="200" height="62">
