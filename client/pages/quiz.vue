@@ -42,6 +42,7 @@
             <!--@nextQuestion="nextQuestion"-->
             <!--@finishQuiz="finishQuiz"-->
           <!--/>-->
+          <!--<pre style="color: red">{{quizMock}}</pre>-->
           <slides-component
             v-for="(question, index) in quizMock"
             :key="question._id"

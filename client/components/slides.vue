@@ -3,20 +3,31 @@
     <div class="qa">
       <div class="options desktop">
         <ul>
-          <li v-for="(choice, index) in slide.answers" :key="`choice-${index}-${slide._id}`">
+          <!--<li v-for="(choice, index) in slide.answers" :key="`choice-${index}-${slide._id}`">-->
+            <!--<input type="radio"-->
+                   <!--name="option"-->
+                   <!--:value="choice"-->
+                   <!--:id="`option-${index + 1}-${slide._id}`"-->
+                   <!--v-model="selectYourAnswer"-->
+            <!--&gt;-->
+            <!--<label :for="`option-${index + 1}-${slide._id}`"></label>-->
+            <!--<span>{{choice | capitalize}}</span>-->
+          <!--</li>-->
+          <li v-for="(choice, index) in quizMock" :key="`choice-${index}-${quizMock.id}`">
             <input type="radio"
                    name="option"
                    :value="choice"
-                   :id="`option-${index + 1}-${slide._id}`"
+                   :id="`option-${index + 1}-${quizMock.id}`"
                    v-model="selectYourAnswer"
             >
-            <label :for="`option-${index + 1}-${slide._id}`"></label>
-            <span>{{choice | capitalize}}</span>
+            <label :for="`option-${index + 1}-${quizMock.id}`"></label>
+            <span>{{choice.name | capitalize}}</span>
           </li>
           <div class="clearfix"></div>
         </ul>
         <div class="clearfix"></div>
-        <div class="submit" v-if="currentSlide === totalQuestions">
+        <!--<div class="submit" v-if="currentSlide === totalQuestions">-->
+        <div class="submit">
           <button class="finish btn-quiz" @click="finishQuiz">
             <svg width="200" height="62">
               <defs>
@@ -108,8 +119,10 @@
       },
 
       finishQuiz() {
-        this.postYourAnswers()
         this.$emit('finishQuiz')
+        setTimeout(() => {
+          this.$router.push({name: 'index'})
+        },2000)
       },
 
       nextQuestion() {
