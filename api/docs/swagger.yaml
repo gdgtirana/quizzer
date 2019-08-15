@@ -1,0 +1,461 @@
+swagger: '2.0'
+info:
+  description: Quizzer API
+  version: 0.1.0
+  title: Quizzer API
+host: http://localhost:3000
+basePath: /api/v1
+consumes:
+  - application/x-www-form-urlencoded
+schemes:
+  - http
+  - https
+produces:
+  - application/json
+
+paths:
+ '/quizzes':
+   patch:
+      tags:
+        - Quizzes
+      summary: Update a quiz
+      description: |
+        Update an existing quizz
+      parameters:
+        - name: quiz_name
+          in: formData
+          description: |
+            Quiz name
+          type: string
+          required: true
+        - name: topics
+          in: formData
+          description: |
+            Quiz topics
+          type: array
+          items: 
+            type: string
+          required: true
+        - name: subtopics
+          in: formData
+          description: |
+            Quiz subtopics
+          type: array
+          items: 
+            type: string
+          required: true
+        - name: difficulty
+          in: formData
+          description: |
+            Quiz difficulty
+          type: number
+          required: true          
+      responses:
+        '200':
+          description: New quiz created
+          schema:
+            $ref: '#/definitions/quiz_update'
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'
+ '/quizzes ':
+   get:
+      tags:
+        - Quizzes
+      summary: Get quizzes
+      description: |
+        Get active quizzes limited by 15 by default
+      parameters:
+        - name: name
+          in: query
+          description: |
+            Search quizzes by name
+          type: string
+        - name: subtopic
+          in: query
+          description: |
+            Search quizzes by subtopic
+          type: string        
+      responses:
+        '200':
+          description: New quiz created
+          schema:
+            $ref: '#/definitions/quiz_list'
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'   
+ '/quizzes/{property}':
+   get:
+      tags:
+        - Quizzes
+      summary: Get a specific quiz
+      description: |
+        Get a quizz by its id or by slug
+      parameters:
+        - name: property
+          in: path
+          description: |
+            Id or slug
+          type: string
+          required: true
+      responses:
+        '200':
+          description: New quiz created
+          schema:
+            $ref: '#/definitions/quiz_by_id'
+        '404':
+          description: Quiz not found
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'       
+ '/quizzes//publish/{property} ':
+   get:
+      tags:
+        - Quizzes
+      summary: Active a quiz
+      description: |
+        Active a quiz so others can answer it || quiz should have 10 or more questions to be
+        published
+      parameters:
+        - name: property
+          in: path
+          description: |
+            Id or slug
+          type: string
+          required: true
+      responses:
+        '200':
+          description: New quiz created
+          schema:
+            $ref: '#/definitions/quiz_update'
+        '404':
+          description: Quiz not found
+        '422':
+          description: Quiz does not have the required question number         
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError' 
+ '/questions':
+   post:
+      tags:
+        - Questions
+      summary: Add question for a quiz
+      description: |
+        Add a completed question to a quiz that you have created before
+      parameters:
+        - name: quiz_id
+          in: formData
+          description: |
+            Id of quiz that you want to add this question
+          type: string
+          required: true
+        - name: correct_answer
+          in: formData
+          type: string
+          description: |
+            Correct answer for this question
+          required: true
+        - name: question
+          in: formData
+          type: string
+          minimum: 3
+          description: |
+            Question that you want to add
+          required: true  
+        - name: answers
+          in: formData
+          type: array
+          items:
+              type: string
+          description: |
+            Possible answers for this question. Sure that correct answer should be included here
+          required: true  
+      responses:
+        '200':
+          description: New question created
+          schema:
+            $ref: '#/definitions/question_create'
+        '404':
+          description: Quiz not found
+        '422':
+          description: Question already exists
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'  
+ '/answers':
+   post:
+      tags:
+        - Answers
+      summary: Answer a quiz
+      description: |
+        Answer all questions of a active quiz
+      parameters:
+        - name: quiz_id
+          in: formData
+          description: |
+            Id of quiz that you want to add this question
+          type: string
+          required: true
+        - name: question_id
+          in: formData
+          type: string
+          description: |
+            Id of the question that you answer, all questions should have a answer
+          required: true
+          x-example: "5bab5708e0607f2ee205d596: {answer: your answer here}"
+      responses:
+        '200':
+          description: Answers added
+          schema:
+            $ref: '#/definitions/answers_create'
+        '404':
+          description: Quiz not found
+        '422':
+          description: Quiz have questions that you have not answer
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'  
+ '/users':
+   post:
+      tags:
+        - Users
+      summary: Create a user
+      description: |
+        Create a new user
+      parameters:
+        - name: first_name
+          in: formData
+          description: |
+            First name of the new user
+          type: string
+          required: true
+        - name: last_name
+          in: formData
+          description: |
+            Last name of the new user
+          type: string
+          required: true
+        - name: email
+          in: formData
+          description: |
+            Email of the new user
+          type: string
+          required: true  
+        - name: password
+          in: formData
+          description: |
+            Password of the new user
+          type: string
+          required: true           
+      responses:
+        '200':
+          description: New user created
+          schema:
+            $ref: '#/definitions/user_create'
+        '422':
+          description: Email already exists
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'   
+ '/login':
+   post:
+      tags:
+        - Authenticate
+      summary: Login a user
+      description: |
+        Login a existing user
+      parameters:
+        - name: email
+          in: formData
+          description: |
+            Email of the new user
+          type: string
+          required: true  
+        - name: password
+          in: formData
+          description: |
+            Password of the new user
+          type: string
+          required: true           
+      responses:
+        '200':
+          description: "{token: fsjkaljfklsafkln2jkf23nflk23njkn kl32n 3kl24 nfl}"
+        '404':
+          description: User not found
+        '422':
+          description: "Bad email or password combinatin"
+        '500':
+          description: Server Error
+          schema:
+            $ref: '#/definitions/ServerError'            
+definitions:
+  ServerError:
+    type: string
+    example: There has been a problem with the server.
+  quiz_create:
+    type: object
+    properties:
+      quiz:
+        type: object
+        properties:
+          _id:
+            type: string  
+  quiz_update:
+    type: object
+    properties: 
+      _id:
+        type: string
+      topics:
+        type: array
+        items:
+          type: string
+      subtopics:
+        type: array
+        items:
+          type: string 
+      quizName: 
+        type: string
+      difficulty: 
+        type: number
+      slug:
+        type: string
+      userId:
+        type: string
+      status:
+        type: string
+  quiz_by_id:
+    type: object
+    properties: 
+      _id:
+        type: string
+      topics:
+        type: array
+        items:
+          type: string
+      subtopics:
+        type: array
+        items:
+          type: string 
+      quizName: 
+        type: string
+      difficulty: 
+        type: number
+      questions:
+        type: array
+        items:
+          type: object
+          properties: 
+            answers:
+              type: array
+              items:
+                type: string
+            _id: 
+              type: string
+            question:
+              type: string
+            correctAnswer:
+              type: string
+            quizId:
+              type: string      
+      slug:
+        type: string
+      userId:
+        type: string
+      status:
+        type: string
+  quiz_list: 
+    type: array
+    items:
+      type: object
+      properties:
+        _id: 
+          type: string
+        topics:
+          type: array
+          items:
+            type: string
+        subtopics:
+          type: array
+          items:
+            type: string 
+        quizName: 
+          type: string
+        difficulty: 
+          type: number
+        slug:
+          type: string
+        userId:
+          type: string
+        status:
+          type: string
+  
+  question_create:
+    type: object
+    properties:
+      question:
+        type: object
+        properties:
+          _id: 
+            type: string
+          answers:
+            type: array
+            items:
+              type: string
+          question:
+            type: string
+          quiz_id:
+            type: string
+          correctAnswer:
+            type: string
+  
+  answers_create:
+    type: object
+    properties:
+      _id: 
+        type: string
+      answer:
+        type: object
+        properties:
+          choices:
+            type: array
+            items:
+              type: object
+              properties:
+                questionId:
+                  type: string
+                answer:
+                  type: string
+                result:
+                  type: boolean
+          user_id:
+            type: string
+          quiz_id:
+            type: string
+          points:
+            type: number
+          wrong:
+            type: number
+          right:
+            type: number
+  
+  user_create:
+    type: object
+    properties:
+      _id: 
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email: 
+        type: string
+      slug: 
+        type: string
+ 
