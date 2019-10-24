@@ -7,11 +7,26 @@ Small open-source progressive web-app with cool interactive experience.
 
 Screenshots:
 
-![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")
-![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-2.png "Screenshot 2")
-![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-3.png "Screenshot 3")
-![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-4.png "Screenshot 4")
-![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-5.png "Screenshot 5")
+Doing the quiz
+
+![Screenshot 1](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-1.png "Screenshot 1")
+
+End of the quiz
+
+![Screenshot 2](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-2.png "Screenshot 2")
+
+Responsive mobile quiz
+
+![Screenshot 3](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-3.png "Screenshot 3")
+
+Responsive mobile menu
+
+![Screenshot 4](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-4.png "Screenshot 4")
+
+Quiz creation design
+
+![Screenshot 5](https://github.com/gdgtirana/quizzer/blob/master/docs/design/Screenshot-5.png "Screenshot 5")
+
 ## Tech Stack
 * Vuejs + Nuxtjs client app
 * Nodejs API
