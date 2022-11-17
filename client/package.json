@@ -25,7 +25,7 @@
     "jquery": "^3.3.1",
     "magicsuggest": "^2.1.4",
     "node-sass": "^4.9.3",
-    "nuxt": "^1.0.0",
+    "nuxt": "^3.0.0",
     "sass-loader": "^7.1.0",
     "vue-toastr-2": "0.0.9",
     "vuelidate": "^0.7.4",
